@@ -12,6 +12,7 @@ present=0
 dailyWage=0
 partTimeEmployee=""
 partTimeWage=0
+choice=0
 
 function employeeAttendance() {
 	present=$((RANDOM % 2))
@@ -33,4 +34,22 @@ function employeePartTimeWage() {
 	partTimeWage=$(($wagePerHour * $fullDayHour / 2))
 	echo "$partTimeEmployee has $partTimeWage part time wage"
 }
-employeePartTimeWage
+
+function chooseOption() {
+	echo -e "1:Attendance\n2:Daily Wage\n3:Part Time Employee & Wage"
+	read -p "Enter your Choice:" choice
+	case $choice in
+	1)
+		employeeAttendance
+		;;
+	2)
+		employeeDailyWage
+		;;
+	3)
+		employeePartTimeWage
+		;;
+	*)
+		echo "Invalid choice...."
+	esac
+}
+chooseOption
